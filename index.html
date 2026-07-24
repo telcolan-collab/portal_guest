@@ -24,8 +24,8 @@ body{
 }
 
 .container{
-    width:1200px;
-    max-width:100%;
+    width:100%;
+    max-width:1200px;
     background:#fff;
     border-radius:20px;
     overflow:hidden;
@@ -37,7 +37,7 @@ body{
 
 .left{
     background:#f5f8fc;
-    padding:40px;
+    padding:20px;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -45,7 +45,7 @@ body{
 }
 
 .right{
-    padding:50px;
+    padding:20px;
 }
 
 .logo{
@@ -56,8 +56,10 @@ body{
 }
 
 .logo img{
-    height:70px;
+    max-width:100%;
+	height:auto;
     object-fit:contain;
+	justify-content:center;
 }
 
 h1{
@@ -83,9 +85,10 @@ h1{
 }
 
 .qr-box img{
-    width:280px;
-    max-width:100%;
+    width:100%;
+    max-width:280px;
     background:#fff;
+	height:auto;
     padding:15px;
     border-radius:15px;
     box-shadow:0 8px 20px rgba(0,0,0,.15);
@@ -153,6 +156,7 @@ h1{
     background:#002B6F;
     color:white;
     font-size:22px;
+	word-break:break-word;
     font-weight:bold;
     letter-spacing:2px;
     border-radius:8px;
