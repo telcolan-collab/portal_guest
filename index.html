@@ -287,27 +287,17 @@ Ingresa a "Regístrese para acceder como invitado"
 <li>
     <div class="number">3</div>
 
-<div class="step-content">
-    <strong>Registra tus datos</strong>
+    <div class="step-content">
+        <strong>Registra tus datos</strong>
 
-    <p>En el campo código de registro ingresa:</p>
+        <p>En el campo código de registro ingresa:</p>
 
-    <div class="codigo-box" id="codigo">
-        Cargando...
-    </div>
-</div>
+        <div class="codigo-box" id="codigo">
+            Cargando...
+        </div>
     </div>
 </li>
-<script>
-fetch('codigo.txt')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('codigo').textContent = data.trim();
-    })
-    .catch(() => {
-        document.getElementById('codigo').textContent = 'No disponible';
-    });
-</script>
+
 <li>
     <div class="number">4</div>
 
@@ -323,5 +313,16 @@ fetch('codigo.txt')
 
 </div>
 
+<script>
+fetch('codigo.txt')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('codigo').textContent = data.trim();
+    })
+    .catch(() => {
+        document.getElementById('codigo').textContent = 'No disponible';
+    });
+</script>
+	
 </body>
 </html>
