@@ -295,9 +295,9 @@ Ingresa a "Regístrese para acceder como invitado"
     <div class="codigo-box" id="codigo">
         Cargando...
     </div>
-
 </div>
-
+    </div>
+</li>
 <script>
 fetch('codigo.txt')
     .then(response => response.text())
@@ -308,18 +308,14 @@ fetch('codigo.txt')
         document.getElementById('codigo').textContent = 'No disponible';
     });
 </script>
+<li>
+    <div class="number">4</div>
 
+    <div class="step-content">
+        <strong>Disfruta tu conexión</strong>
+        Las credenciales serán generadas inmediatamente y también se enviarán a tu correo.
     </div>
 </li>
-
-            <li>
-                <div class="number">4</div>
-
-                <div class="step-content">
-                    <strong>Disfruta tu conexión</strong>
-                    Las credenciales serán generadas inmediatamente y tambien se enviaran a tu correo.
-                </div>
-            </li>
 
         </ul>
 
