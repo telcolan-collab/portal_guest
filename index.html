@@ -261,9 +261,33 @@ Ingresa a "Regístrese para acceder como invitado"
 
         En el campo código de registro ingresa:
 
-        <div class="codigo-box">
-            072026
-        </div>
+<div class="codigo-box" id="codigo">
+2
+Cargando...
+3
+</div>
+4
+ 
+5
+<script>
+6
+fetch('codigo.txt')
+7
+.then(response => response.text())
+8
+.then(data => {
+9
+document.getElementById('codigo').textContent = data.trim();
+10
+})
+11
+.catch(() => {
+12
+document.getElementById('codigo').textContent = 'No disponible';
+13
+});
+14
+</script>
 
     </div>
 </li>
