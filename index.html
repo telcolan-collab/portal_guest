@@ -122,6 +122,22 @@ h1{
     margin-bottom:30px;
     align-items:flex-start;
 }
+.manual-link{
+    display:inline-block;
+    margin-top:8px;
+    padding:8px 14px;
+    background:#0057B8;
+    color:#fff;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.manual-link:hover{
+    background:#0078D4;
+}
 
 .number{
     min-width:55px;
@@ -169,6 +185,17 @@ h1{
     padding-top:25px;
     border-top:1px solid #ddd;
     color:#666;
+}
+.guia-container{
+    text-align:center;
+    margin-top:35px;
+    padding-top:25px;
+    border-top:1px solid #ddd;
+}
+
+.guia-texto{
+    color:#666;
+    margin-bottom:12px;
 }
 
 @media(max-width:900px){
@@ -222,6 +249,51 @@ h1{
     max-width:140px;
 }
 }
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.modal-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+
+.close-modal {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    color: #002B6F;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,.3);
+}
+
 
 </style>
 </head>
@@ -279,8 +351,11 @@ h1{
     <div class="number">2</div>
 
     <div class="step-content">
-        <strong>Abrir el portal cautivo.</strong><br>
-Ingresa a "Regístrese para acceder como invitado"
+        <strong>Abrir el portal cautivo.</strong>
+
+        <p>
+            Ingresa a "Regístrese para acceder como invitado"
+        </p>
     </div>
 </li>
 
@@ -307,6 +382,16 @@ Ingresa a "Regístrese para acceder como invitado"
     </div>
 </li>
 
+<div class="guia-container">
+    <p class="guia-texto">
+        ¿Tienes dudas durante el proceso de registro?
+    </p>
+
+    <button class="manual-link" onclick="abrirManual()">
+        📖 Ver guía gráfica
+    </button>
+</div>
+
         </ul>
 
     </div>
@@ -323,6 +408,32 @@ fetch('codigo.txt')
         document.getElementById('codigo').textContent = 'No disponible';
     });
 </script>
-	
+
+<div id="manualModal" class="modal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="cerrarManual()">
+            ×
+        </button>
+
+        <img src="manual.png" alt="Guía de registro">
+    </div>
+</div>
+
+<script>
+function abrirManual() {
+    document.getElementById('manualModal').classList.add('active');
+}
+
+function cerrarManual() {
+    document.getElementById('manualModal').classList.remove('active');
+}
+
+document.getElementById('manualModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        cerrarManual();
+    }
+});
+</script>
+
 </body>
 </html>
