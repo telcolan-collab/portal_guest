@@ -399,14 +399,16 @@ h1{
 </div>
 
 <script>
-fetch('codigo.txt')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('codigo').textContent = data.trim();
-    })
-    .catch(() => {
-        document.getElementById('codigo').textContent = 'No disponible';
-    });
+fetch('codigo.txt?v=' + Date.now(), {
+    cache: 'no-store'
+})
+.then(response => response.text())
+.then(data => {
+    document.getElementById('codigo').textContent = data.trim();
+})
+.catch(() => {
+    document.getElementById('codigo').textContent = 'No disponible';
+});
 </script>
 
 <div id="manualModal" class="modal">
