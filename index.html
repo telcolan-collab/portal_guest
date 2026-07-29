@@ -46,6 +46,7 @@ body{
 
 .right{
     padding:20px;
+    position:relative;
 }
 
 .logo{
@@ -197,6 +198,31 @@ h1{
     color:#666;
     margin-bottom:12px;
 }
+.language-selector{
+    position:absolute;
+    top:20px;
+    right:20px;
+    z-index:100;
+    display:flex;
+    gap:8px;
+}
+
+.language-selector button{
+    background:#ffffff;
+    color:#0057B8;
+    border:1px solid #0057B8;
+    padding:6px 12px;
+    border-radius:20px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.language-selector button:hover{
+    background:#0057B8;
+    color:white;
+}
 
 @media(max-width:900px){
 
@@ -308,14 +334,14 @@ h1{
 
         <div class="qr-box">
 
-            <h2>Acceso WiFi Invitados</h2>
+            <h2 id="wifiTitle">Acceso WiFi Invitados</h2>
 
             <img src="./qr_wifi.jpg" alt="QR-WIFI">
 
             <div class="wifi-info">
-                <p><strong>RED:</strong> WLAN_GUEST</p>
-                <p><strong>Acceso:</strong> Invitados</p>
-                <p><strong>Seguridad:</strong> Portal Cautivo</p>
+                <p><strong id="networkLabel">RED:</strong> WLAN_GUEST</p>
+				<p><strong id="accessLabel">Acceso:</strong> <span id="accessValue">Invitados</span></p>
+				<p><strong id="securityLabel">Seguridad:</strong> <span id="securityValue">Portal Cautivo</span></p>
             </div>
 
         </div>
@@ -330,9 +356,13 @@ h1{
             <img src="./logo-gou.jpg" alt="GOU Payments">
         </div>
 
-        <h1>Bienvenido</h1>
+<div class="language-selector">
+    <button onclick="setLanguage('es')">ES</button>
+    <button onclick="setLanguage('en')">EN</button>
+</div>
+        <h1 id="welcomeTitle">Bienvenido</h1>
 
-        <p class="subtitle">
+        <p class="subtitle" id="subtitle">
             Conéctate fácilmente a nuestra red inalámbrica para invitados.
         </p>
 
@@ -342,8 +372,10 @@ h1{
                 <div class="number">1</div>
 
                 <div class="step-content">
-                    <strong>Conéctate a WLAN_GUEST</strong>
-                    Busca la red inalámbrica desde tu dispositivo o escanea el codigo QR.
+                    <strong id="step1Title">Conéctate a WLAN_GUEST</strong>
+					<span id="step1Text">
+						Busca la red inalámbrica desde tu dispositivo o escanea el código QR.
+					</span>
                 </div>
             </li>
 
@@ -351,11 +383,11 @@ h1{
     <div class="number">2</div>
 
     <div class="step-content">
-        <strong>Abrir el portal cautivo.</strong>
+				<strong id="step2Title">Abrir el portal cautivo.</strong>
 
-        <p>
-            Ingresa a "Regístrese para acceder como invitado"
-        </p>
+				<p id="step2Text">
+						Ingresa a "Regístrese para acceder como invitado"
+				</p>
     </div>
 </li>
 
@@ -363,10 +395,11 @@ h1{
     <div class="number">3</div>
 
     <div class="step-content">
-        <strong>Registra tus datos</strong>
+<strong id="step3Title">Registra tus datos</strong>
 
-        <p>En el campo código de registro ingresa:</p>
-
+<p id="step3Text">
+En el campo código de registro ingresa:
+</p>
         <div class="codigo-box" id="codigo">
             Cargando...
         </div>
@@ -377,19 +410,22 @@ h1{
     <div class="number">4</div>
 
     <div class="step-content">
-        <strong>Disfruta tu conexión</strong>
-        Las credenciales serán generadas inmediatamente y también se enviarán a tu correo.
+       <strong id="step4Title">Disfruta tu conexión</strong>
+
+<span id="step4Text">
+Las credenciales serán generadas inmediatamente y también se enviarán a tu correo.
+</span>
     </div>
 </li>
 
 <div class="guia-container">
-    <p class="guia-texto">
-        ¿Tienes dudas durante el proceso de registro?
-    </p>
+<p class="guia-texto" id="guideText">
+¿Tienes dudas durante el proceso de registro?
+</p>
 
-    <button class="manual-link" onclick="abrirManual()">
-        📖 Ver guía gráfica
-    </button>
+<button class="manual-link" onclick="abrirManual()" id="guideButton">
+📖 Ver guía gráfica
+</button>
 </div>
 
         </ul>
@@ -435,6 +471,96 @@ document.getElementById('manualModal').addEventListener('click', function(e) {
         cerrarManual();
     }
 });
+</script>
+
+<script>
+
+const translations = {
+
+es: {
+wifiTitle: "Acceso WiFi Invitados",
+welcomeTitle: "Bienvenido",
+subtitle: "Conéctate fácilmente a nuestra red inalámbrica para invitados.",
+
+networkLabel: "RED:",
+accessLabel: "Acceso:",
+securityLabel: "Seguridad:",
+
+accessValue: "Invitados",
+securityValue: "Portal Cautivo",
+
+step1Title: "Conéctate a WLAN_GUEST",
+step1Text: "Busca la red inalámbrica desde tu dispositivo o escanea el código QR.",
+
+step2Title: "Abrir el portal cautivo.",
+step2Text: 'Ingresa a "Regístrese para acceder como invitado".',
+
+step3Title: "Registra tus datos",
+step3Text: "En el campo código de registro ingresa:",
+
+step4Title: "Disfruta tu conexión",
+step4Text: "Las credenciales serán generadas inmediatamente y también se enviarán a tu correo.",
+
+guideText: "¿Tienes dudas durante el proceso de registro?",
+guideButton: "📖 Ver guía gráfica"
+},
+
+en: {
+wifiTitle: "Guest WiFi Access",
+welcomeTitle: "Welcome",
+subtitle: "Connect easily to our guest wireless network.",
+
+networkLabel: "NETWORK:",
+accessLabel: "Access:",
+securityLabel: "Security:",
+
+accessValue: "Guests",
+securityValue: "Captive Portal",
+
+step1Title: "Connect to WLAN_GUEST",
+step1Text: "Locate the wireless network on your device or scan the QR code.",
+
+step2Title: "Open the captive portal.",
+step2Text: 'Select "Register for guest access".',
+
+step3Title: "Register your information",
+step3Text: "Enter the registration code:",
+
+step4Title: "Enjoy your connection",
+step4Text: "Your credentials will be generated immediately and sent to your email.",
+
+guideText: "Need help during the registration process?",
+guideButton: "📖 View graphical guide"
+}
+
+};
+
+function setLanguage(lang){
+
+Object.keys(translations[lang]).forEach(function(key){
+
+const element = document.getElementById(key);
+
+if(element){
+element.innerHTML = translations[lang][key];
+}
+
+});
+
+localStorage.setItem("lang", lang);
+
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const savedLang =
+localStorage.getItem("lang") ||
+(navigator.language.startsWith("en") ? "en" : "es");
+
+setLanguage(savedLang);
+
+});
+
 </script>
 
 </body>
